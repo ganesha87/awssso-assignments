@@ -1,0 +1,32 @@
+---
+Functional_Team_name: "Infra Foundation Team"
+assignments:
+  accounts:
+    - account_name: "dev-sre"
+      permissions: 
+      - adminAccess
+      - viewOnlyAccess
+    - account_name: "prod-cloudeng"
+      permissions: 
+      - adminAccess
+      - viewOnlyAccess
+    - account_name: "identity-cloudeng"
+      permissions: 
+      - adminAccess
+      - viewOnlyAccess
+---
+Functional_Team_name: "Raptor"
+assignments:
+  accounts:
+    - account_name: "dev-sre"
+      permissions: 
+      - adminAccess
+      - viewOnlyAccess
+    - account_name: "prod-cloudeng"
+      permissions: 
+      - adminAccess
+      - viewOnlyAccess
+    - account_name: "identity-cloudeng"
+      permissions: 
+      - adminAccess
+      - viewOnlyAccess

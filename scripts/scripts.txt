@@ -1,0 +1,20 @@
+export AWS_ACCESS_KEY_ID="
+export AWS_SECRET_ACCESS_KEY="
+export AWS_SESSION_TOKEN="
+
+python3 createPermissionsConfig.py > ../terraform/permissionsets.tfvars 
+python3 createPSetMap.py > ../terraform/pSetsMap.auto.tfvars
+python3 createTeamsConfig.py > ../terraform/assignments.tfvars
+
+terraform plan -var-file pSetsMap.auto.tfvars -var-file permissionsets.tfvars -var-file accounts.auto.tfvars
+terraform apply -var-file pSetsMap.auto.tfvars -var-file permissionsets.tfvars -var-file accounts.auto.tfvars
+
+terraform plan -var-file pSetsMap.auto.tfvars -var-file permissionsets.tfvars -var-file accounts.auto.tfvars -var-file assignments.tfvars
+terraform apply -var-file pSetsMap.auto.tfvars -var-file permissionsets.tfvars -var-file accounts.auto.tfvars -var-file assignments.tfvars
+
+terraform plan -var-file permissionsets.tfvars
+terraform apply -var-file permissionsets.tfvars
+
+terraform plan -var-file pSetsMap.auto.tfvars -var-file accounts.auto.tfvars -var-file assignments.tfvars
+terraform apply -var-file pSetsMap.auto.tfvars -var-file accounts.auto.tfvars -var-file assignments.tfvars
+
