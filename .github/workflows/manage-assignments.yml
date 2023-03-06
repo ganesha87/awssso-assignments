@@ -39,10 +39,10 @@ jobs:
     
     - name: Init tfvars file and fetch Terraform state
       run: |
-        export AWS_REGION=ap-south-1
-        python scripts/createPSetMap.py > ./terraform/pSetsMap.auto.tfvars
+        export AWS_REGION=${{ secrets.AWS_REGION }}
         python scripts/createTeamsConfig.py > ./terraform/assignments.tfvars
         python scripts/getlatestTFState.py
+        python scripts/createPSetMap.py > ./terraform/pSetsMap.auto.tfvars
         
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
