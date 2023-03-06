@@ -57,7 +57,7 @@ jobs:
     - name: Terraform Plan
       run: |
         cd terraform
-        terraform plan -var-file permissionsets.tfvars -input=false
+        terraform plan -var-file pSetsMap.auto.tfvars -var-file accounts.auto.tfvars -var-file assignments.tfvars
         
     #upload the terraform state to S3
     #- name: Init tfvars file and fetch Terraform state
