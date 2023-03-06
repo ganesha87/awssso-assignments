@@ -1,5 +1,5 @@
 ---
-Functional_Team_name: "Infra Foundation Team"
+Functional_Team_name: "CloudEngg-Admins"
 assignments:
   accounts:
     - account_name: "dev-sre"
@@ -15,7 +15,7 @@ assignments:
       - adminAccess
       - viewOnlyAccess
 ---
-Functional_Team_name: "Raptor"
+Functional_Team_name: "CloudEngg-Configurators"
 assignments:
   accounts:
     - account_name: "dev-sre"
