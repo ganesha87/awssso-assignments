@@ -1,0 +1,64 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  workflow_dispatch:
+  
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyyaml
+        pip install boto3
+    
+    - name: Init tfvars file and fetch Terraform state
+      run: |
+        python scripts/createPSetMap.py > ./terraform/pSetsMap.auto.tfvars
+        python scripts/createTeamsConfig.py > ./terraform/assignments.tfvars
+        python scripts/getlatestTFState.py
+        
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: |
+        cd terraform
+        terraform init
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: |
+        cd terraform
+        terraform plan -var-file permissionsets.tfvars -input=false
+        
+    #upload the terraform state to S3
+    #- name: Init tfvars file and fetch Terraform state
+    #  run: |
+    #    python scripts/uploadLatestTFState.py
+        
