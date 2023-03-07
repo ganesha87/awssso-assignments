@@ -6,7 +6,6 @@ assignments:
       permissions: 
       - adminAccess
       - viewOnlyAccess
-      - InfraFdnSREPowerUserAccess
     - account_name: "prod-cloudeng"
       permissions: 
       - adminAccess
@@ -15,6 +14,7 @@ assignments:
       permissions: 
       - adminAccess
       - viewOnlyAccess
+      - InfraFdnSREPowerUserAccess
 ---
 Functional_Team_name: "CloudEngg-Configurators"
 assignments:
@@ -27,8 +27,8 @@ assignments:
       permissions: 
       - adminAccess
       - viewOnlyAccess
-      - InfraFdnSREPowerUserAccess
     - account_name: "identity-cloudeng"
       permissions: 
       - adminAccess
       - viewOnlyAccess
+      - InfraFdnSREPowerUserAccess
