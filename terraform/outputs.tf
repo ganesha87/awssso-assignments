@@ -1,3 +1,3 @@
 output "assignments" {
-  value = aws_ssoadmin_account_assignment.this.id
+  value = aws_ssoadmin_account_assignment.this
 }
