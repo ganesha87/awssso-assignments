@@ -59,7 +59,7 @@ jobs:
       run: |
         export AWS_REGION=${{ secrets.AWS_REGION }}
         python scripts/createTeamsConfig.py > ./terraform/assignments.tfvars
-        python scripts/getlatestTFState.py
+        #python scripts/getlatestTFState.py
         python scripts/createPSetMap.py > ./terraform/pSetsMap.auto.tfvars
         cd terraform
         terraform init
@@ -75,7 +75,7 @@ jobs:
         terraform apply -auto-approve -var-file pSetsMap.auto.tfvars -var-file accounts.auto.tfvars -var-file assignments.tfvars -input=false
         
     #upload the terraform state to S3
-    - name: upload the terraform state to S3
-      run: |
-        python scripts/uploadLatestTFState.py
+    #- name: upload the terraform state to S3
+    #  run: |
+    #    python scripts/uploadLatestTFState.py
         
