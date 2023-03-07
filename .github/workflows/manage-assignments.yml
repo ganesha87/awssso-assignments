@@ -64,9 +64,18 @@ jobs:
         cd terraform
         terraform init
         terraform plan -var-file pSetsMap.auto.tfvars -var-file accounts.auto.tfvars -var-file assignments.tfvars
+    
+    # Apply plan for Terraform
+    - name: Terraform Apply
+      run: |
+        #python scripts/createPermissionsConfig.py > ./terraform/permissionsets.tfvars
+        #python scripts/getlatestTFState.py
+        cd terraform
+        terraform init
+        terraform apply -auto-approve -var-file pSetsMap.auto.tfvars -var-file accounts.auto.tfvars -var-file assignments.tfvars -input=false
         
     #upload the terraform state to S3
-    #- name: Init tfvars file and fetch Terraform state
-    #  run: |
-    #    python scripts/uploadLatestTFState.py
+    - name: upload the terraform state to S3
+      run: |
+        python scripts/uploadLatestTFState.py
         
