@@ -10,6 +10,7 @@ assignments:
       permissions: 
       - adminAccess
       - viewOnlyAccess
+      - powerUserAccess
     - account_name: "identity-cloudeng"
       permissions: 
       - adminAccess
@@ -23,6 +24,7 @@ assignments:
       permissions: 
       - adminAccess
       - viewOnlyAccess
+      - powerUserAccess
     - account_name: "prod-cloudeng"
       permissions: 
       - adminAccess
